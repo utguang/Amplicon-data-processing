@@ -1,0 +1,36 @@
+# This script aims to generalize the steps required to run an automatic pipeline for new to bioinformatics. 
+# For full description of Nextflow: https://www.nature.com/articles/nbt.3820?report=reader
+# For full description of nf-core: https://www.nature.com/articles/s41587-020-0439-x
+
+# Assume anaconda is installed appropriately in your environment.
+
+1. create a conda env for your pipeline
+conda create -n ampliq
+conda activate ampliq
+
+2. Install nextflow and update it to the newest version.
+conda install -c bioconda/label/cf201901 nextflow
+conda update nextflow
+
+3. Install nf-core
+conda install -c bioconda/label/cf201901 nf-core
+conda update nf-core
+
+4. Install singularity
+conda install -c conda-forge/label/cf201901 singularity
+conda update singularity
+
+Once packages above are installed, you are ready to run the automatic pipeline using the command below.
+
+nextflow run nf-core/ampliseq -r 2.3.1 -profile singularity --input "PATH-TO-YOUR-DATA" --FW_primer "Forward primer sequences" --RV_primer "Reverse primer sequences" --outdir OUTPUT directory -bg
+
+The -bg parameters will proceed your analysis on the background until it is done. 
+
+
+
+Citation: 
+Daniel Straub, Nia Blackwell, Adrian Langarica-Fuentes, Alexander Peltzer, Sven Nahnsen, Sara Kleindienst Interpretations of Environmental Microbial Community Studies Are Biased by the Selected 16S rRNA (Gene) Amplicon Sequencing Pipeline Frontiers in Microbiology 2020, 11:2652 doi: 10.3389/fmicb.2020.550420.
+Di Tommaso, P., Chatzou, M., Floden, E. et al. Nextflow enables reproducible computational workflows. Nat Biotechnol 35, 316–319 (2017). https://doi.org/10.1038/nbt.3820
+Kurtzer GM, Sochat V, Bauer MW (2017) Singularity: Scientific containers for mobility of compute. PLoS ONE 12(5): e0177459. https://doi.org/10.1371/journal.pone.0177459
+
+
